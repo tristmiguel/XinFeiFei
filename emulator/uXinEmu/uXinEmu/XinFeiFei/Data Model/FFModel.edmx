@@ -1,0 +1,1085 @@
+﻿<?xml version="1.0" encoding="utf-8"?><edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="FFModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="FFModelStoreContainer">
+    <EntitySet Name="Users" EntityType="FFModel.Store.Users" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Characters" EntityType="FFModel.Store.Characters" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Items" EntityType="FFModel.Store.Items" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="LogEntries" EntityType="FFModel.Store.LogEntries" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Families" EntityType="FFModel.Store.Families" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MasterRelationships" EntityType="FFModel.Store.MasterRelationships" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Hotkeys" EntityType="FFModel.Store.Hotkeys" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TaskBarItems" EntityType="FFModel.Store.TaskBarItems" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Closets" EntityType="FFModel.Store.Closets" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Items_InventoryItem" EntityType="FFModel.Store.Items_InventoryItem" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Items_QuestItem" EntityType="FFModel.Store.Items_QuestItem" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Items_StorageItem" EntityType="FFModel.Store.Items_StorageItem" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Items_ClosetItem" EntityType="FFModel.Store.Items_ClosetItem" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="UserCharacter" Association="FFModel.Store.UserCharacter">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Character" EntitySet="Characters" />
+    </AssociationSet>
+    <AssociationSet Name="CharacterLogEntry" Association="FFModel.Store.CharacterLogEntry">
+      <End Role="Character" EntitySet="Characters" />
+      <End Role="LogEntry" EntitySet="LogEntries" />
+    </AssociationSet>
+    <AssociationSet Name="CharacterMasterRelationship1" Association="FFModel.Store.CharacterMasterRelationship1">
+      <End Role="Character" EntitySet="Characters" />
+      <End Role="MasterRelationship" EntitySet="MasterRelationships" />
+    </AssociationSet>
+    <AssociationSet Name="CharacterMasterRelationship" Association="FFModel.Store.CharacterMasterRelationship">
+      <End Role="Character" EntitySet="Characters" />
+      <End Role="MasterRelationship" EntitySet="MasterRelationships" />
+    </AssociationSet>
+    <AssociationSet Name="CharacterFamily" Association="FFModel.Store.CharacterFamily">
+      <End Role="Character" EntitySet="Characters" />
+      <End Role="Family" EntitySet="Families" />
+    </AssociationSet>
+    <AssociationSet Name="CharacterHotkey" Association="FFModel.Store.CharacterHotkey">
+      <End Role="Character" EntitySet="Characters" />
+      <End Role="Hotkey" EntitySet="Hotkeys" />
+    </AssociationSet>
+    <AssociationSet Name="CharacterTaskBarItem" Association="FFModel.Store.CharacterTaskBarItem">
+      <End Role="Character" EntitySet="Characters" />
+      <End Role="TaskBarItem" EntitySet="TaskBarItems" />
+    </AssociationSet>
+    <AssociationSet Name="CharacterInventoryItem" Association="FFModel.Store.CharacterInventoryItem">
+      <End Role="Character" EntitySet="Characters" />
+      <End Role="InventoryItem" EntitySet="Items_InventoryItem" />
+    </AssociationSet>
+    <AssociationSet Name="CharacterQuestItem" Association="FFModel.Store.CharacterQuestItem">
+      <End Role="Character" EntitySet="Characters" />
+      <End Role="QuestItem" EntitySet="Items_QuestItem" />
+    </AssociationSet>
+    <AssociationSet Name="CharacterStorageItem" Association="FFModel.Store.CharacterStorageItem">
+      <End Role="Character" EntitySet="Characters" />
+      <End Role="StorageItem" EntitySet="Items_StorageItem" />
+    </AssociationSet>
+    <AssociationSet Name="ClosetClosetItems" Association="FFModel.Store.ClosetClosetItems">
+      <End Role="Closet" EntitySet="Closets" />
+      <End Role="ClosetItems" EntitySet="Items_ClosetItem" />
+    </AssociationSet>
+    <AssociationSet Name="ClosetCharacter" Association="FFModel.Store.ClosetCharacter">
+      <End Role="Closet" EntitySet="Closets" />
+      <End Role="Character" EntitySet="Characters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_InventoryItem_inherits_Item" Association="FFModel.Store.FK_InventoryItem_inherits_Item">
+      <End Role="Item" EntitySet="Items" />
+      <End Role="InventoryItem" EntitySet="Items_InventoryItem" />
+    </AssociationSet>
+    <AssociationSet Name="FK_QuestItem_inherits_Item" Association="FFModel.Store.FK_QuestItem_inherits_Item">
+      <End Role="Item" EntitySet="Items" />
+      <End Role="QuestItem" EntitySet="Items_QuestItem" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StorageItem_inherits_Item" Association="FFModel.Store.FK_StorageItem_inherits_Item">
+      <End Role="Item" EntitySet="Items" />
+      <End Role="StorageItem" EntitySet="Items_StorageItem" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ClosetItem_inherits_Item" Association="FFModel.Store.FK_ClosetItem_inherits_Item">
+      <End Role="Item" EntitySet="Items" />
+      <End Role="ClosetItem" EntitySet="Items_ClosetItem" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="AcceptedAgreement" Type="bit" Nullable="false" DefaultValue="false" />
+    <Property Name="GoldCoins" Type="int" Nullable="false" DefaultValue="0" />
+  </EntityType>
+  <EntityType Name="Characters">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Level" Type="tinyint" Nullable="false" DefaultValue="1" />
+    <Property Name="Experience" Type="bigint" Nullable="false" DefaultValue="0" />
+    <Property Name="Gender" Type="tinyint" Nullable="false" />
+    <Property Name="Job" Type="tinyint" Nullable="false" />
+    <Property Name="Position_X" Type="real" Nullable="false" DefaultValue="622" />
+    <Property Name="Position_Y" Type="real" Nullable="false" DefaultValue="230.1" />
+    <Property Name="Position_Z" Type="real" Nullable="false" DefaultValue="623" />
+    <Property Name="WorldId" Type="int" Nullable="false" DefaultValue="1" />
+    <Property Name="Stats_STR" Type="int" Nullable="false" DefaultValue="15" />
+    <Property Name="Stats_STA" Type="int" Nullable="false" DefaultValue="15" />
+    <Property Name="Stats_INT" Type="int" Nullable="false" DefaultValue="15" />
+    <Property Name="Stats_DEX" Type="int" Nullable="false" DefaultValue="15" />
+    <Property Name="Stats_SPI" Type="int" Nullable="false" DefaultValue="15" />
+    <Property Name="Stats_Available" Type="int" Nullable="false" DefaultValue="2" />
+    <Property Name="FlyingStats_Level" Type="int" Nullable="false" DefaultValue="1" />
+    <Property Name="FlyingStats_Experience" Type="int" Nullable="false" DefaultValue="0" />
+    <Property Name="Appearance_HairMesh" Type="int" Nullable="false" />
+    <Property Name="Appearance_HairColor" Type="int" Nullable="false" />
+    <Property Name="Appearance_HeadMesh" Type="int" Nullable="false" />
+    <Property Name="BlockTime" Type="int" Nullable="false" DefaultValue="0" />
+    <Property Name="Blocked" Type="bit" Nullable="false" />
+    <Property Name="Deleted" Type="bit" Nullable="false" DefaultValue="false" />
+    <Property Name="Slot" Type="int" Nullable="false" />
+    <Property Name="Scale" Type="smallint" Nullable="false" DefaultValue="100" />
+    <Property Name="PKInfo_Kills" Type="int" Nullable="false" DefaultValue="0" />
+    <Property Name="PKInfo_Deaths" Type="int" Nullable="false" DefaultValue="0" />
+    <Property Name="PKInfo_Fame" Type="int" Nullable="false" DefaultValue="100" />
+    <Property Name="PKInfo_PKMode" Type="tinyint" Nullable="false" DefaultValue="0" />
+    <Property Name="PKInfo_PKName" Type="tinyint" Nullable="false" DefaultValue="0" />
+    <Property Name="PKInfo_GreyTime" Type="int" Nullable="false" DefaultValue="0" />
+    <Property Name="PKInfo_ProtectionCooldownStart" Type="int" Nullable="false" DefaultValue="0" />
+    <Property Name="FamilyId" Type="int" Nullable="true" />
+    <Property Name="SilverCoins" Type="int" Nullable="false" DefaultValue="0" />
+    <Property Name="Savings" Type="int" Nullable="false" DefaultValue="0" />
+    <Property Name="PersonalInformation_City" Type="int" Nullable="false" />
+    <Property Name="PersonalInformation_ZodiacSign" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Items">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ItemId" Type="int" Nullable="false" />
+    <Property Name="Slot" Type="tinyint" Nullable="false" />
+    <Property Name="StackSize" Type="int" Nullable="false" DefaultValue="1" />
+  </EntityType>
+  <EntityType Name="LogEntries">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CharacterId" Type="int" Nullable="false" />
+    <Property Name="LogString" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="SystemId" Type="tinyint" Nullable="false" />
+    <Property Name="DateTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Families">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Rank" Type="int" Nullable="false" />
+    <Property Name="Popularity" Type="int" Nullable="false" DefaultValue="0" />
+    <Property Name="Icon" Type="tinyint" Nullable="false" DefaultValue="0" />
+  </EntityType>
+  <EntityType Name="MasterRelationships">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CharacterId" Type="int" Nullable="false" />
+    <Property Name="Points" Type="int" Nullable="false" DefaultValue="0" />
+    <Property Name="Pupil_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Hotkeys">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CharacterId" Type="int" Nullable="false" />
+    <Property Name="Index" Type="int" Nullable="false" />
+    <Property Name="Key" Type="int" Nullable="false" />
+    <Property Name="Modifier" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TaskBarItems">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CharacterId" Type="int" Nullable="false" />
+    <Property Name="TaskBar" Type="int" Nullable="false" />
+    <Property Name="Line" Type="int" Nullable="false" />
+    <Property Name="Grid" Type="int" Nullable="false" />
+    <Property Name="Shortcut" Type="int" Nullable="false" />
+    <Property Name="ShortcutId" Type="int" Nullable="false" />
+    <Property Name="Type" Type="int" Nullable="false" />
+    <Property Name="Index" Type="int" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="Data" Type="int" Nullable="false" />
+    <Property Name="String" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Closets">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Level" Type="int" Nullable="false" DefaultValue="1" />
+    <Property Name="Capacity" Type="int" Nullable="false" DefaultValue="8" />
+    <Property Name="Character_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Items_InventoryItem">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="CharacterId" Type="int" Nullable="false" />
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Items_QuestItem">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="CharacterId" Type="int" Nullable="false" />
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Items_StorageItem">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="CharacterId" Type="int" Nullable="false" />
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Items_ClosetItem">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="ClosetId" Type="int" Nullable="false" />
+    <Property Name="Level" Type="int" Nullable="false" DefaultValue="1" />
+    <Property Name="Equipped" Type="bit" Nullable="false" DefaultValue="false" />
+    <Property Name="Index" Type="int" Nullable="false" />
+    <Property Name="DateTime" Type="datetime" Nullable="false" />
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="UserCharacter">
+    <End Role="User" Type="FFModel.Store.Users" Multiplicity="1" />
+    <End Role="Character" Type="FFModel.Store.Characters" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Character">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CharacterLogEntry">
+    <End Role="Character" Type="FFModel.Store.Characters" Multiplicity="1" />
+    <End Role="LogEntry" Type="FFModel.Store.LogEntries" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Character">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LogEntry">
+        <PropertyRef Name="CharacterId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CharacterMasterRelationship1">
+    <End Role="Character" Type="FFModel.Store.Characters" Multiplicity="1" />
+    <End Role="MasterRelationship" Type="FFModel.Store.MasterRelationships" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Character">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MasterRelationship">
+        <PropertyRef Name="CharacterId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CharacterMasterRelationship">
+    <End Role="Character" Type="FFModel.Store.Characters" Multiplicity="1" />
+    <End Role="MasterRelationship" Type="FFModel.Store.MasterRelationships" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Character">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MasterRelationship">
+        <PropertyRef Name="Pupil_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CharacterFamily">
+    <End Role="Character" Type="FFModel.Store.Characters" Multiplicity="*" />
+    <End Role="Family" Type="FFModel.Store.Families" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Family">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Character">
+        <PropertyRef Name="FamilyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CharacterHotkey">
+    <End Role="Character" Type="FFModel.Store.Characters" Multiplicity="1" />
+    <End Role="Hotkey" Type="FFModel.Store.Hotkeys" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Character">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Hotkey">
+        <PropertyRef Name="CharacterId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CharacterTaskBarItem">
+    <End Role="Character" Type="FFModel.Store.Characters" Multiplicity="1" />
+    <End Role="TaskBarItem" Type="FFModel.Store.TaskBarItems" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Character">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TaskBarItem">
+        <PropertyRef Name="CharacterId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CharacterInventoryItem">
+    <End Role="Character" Type="FFModel.Store.Characters" Multiplicity="1" />
+    <End Role="InventoryItem" Type="FFModel.Store.Items_InventoryItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Character">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="InventoryItem">
+        <PropertyRef Name="CharacterId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CharacterQuestItem">
+    <End Role="Character" Type="FFModel.Store.Characters" Multiplicity="1" />
+    <End Role="QuestItem" Type="FFModel.Store.Items_QuestItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Character">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="QuestItem">
+        <PropertyRef Name="CharacterId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CharacterStorageItem">
+    <End Role="Character" Type="FFModel.Store.Characters" Multiplicity="1" />
+    <End Role="StorageItem" Type="FFModel.Store.Items_StorageItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Character">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="StorageItem">
+        <PropertyRef Name="CharacterId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ClosetClosetItems">
+    <End Role="Closet" Type="FFModel.Store.Closets" Multiplicity="1" />
+    <End Role="ClosetItems" Type="FFModel.Store.Items_ClosetItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Closet">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ClosetItems">
+        <PropertyRef Name="ClosetId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ClosetCharacter">
+    <End Role="Closet" Type="FFModel.Store.Closets" Multiplicity="*" />
+    <End Role="Character" Type="FFModel.Store.Characters" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Character">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Closet">
+        <PropertyRef Name="Character_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_InventoryItem_inherits_Item">
+    <End Role="Item" Type="FFModel.Store.Items" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="InventoryItem" Type="FFModel.Store.Items_InventoryItem" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Item">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="InventoryItem">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_QuestItem_inherits_Item">
+    <End Role="Item" Type="FFModel.Store.Items" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="QuestItem" Type="FFModel.Store.Items_QuestItem" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Item">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="QuestItem">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StorageItem_inherits_Item">
+    <End Role="Item" Type="FFModel.Store.Items" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="StorageItem" Type="FFModel.Store.Items_StorageItem" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Item">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="StorageItem">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ClosetItem_inherits_Item">
+    <End Role="Item" Type="FFModel.Store.Items" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ClosetItem" Type="FFModel.Store.Items_ClosetItem" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Item">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ClosetItem">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FFModel" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="FFModelContainer" annotation:LazyLoadingEnabled="true" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
+          <EntitySet Name="Users" EntityType="FFModel.User" />
+          <EntitySet Name="Characters" EntityType="FFModel.Character" />
+          <AssociationSet Name="UserCharacter" Association="FFModel.UserCharacter">
+            <End EntitySet="Users" Role="User" />
+            <End EntitySet="Characters" Role="Character" />
+          </AssociationSet>
+          <EntitySet Name="Items" EntityType="FFModel.Item" />
+          <EntitySet Name="LogEntries" EntityType="FFModel.LogEntry" />
+          <AssociationSet Name="CharacterLogEntry" Association="FFModel.CharacterLogEntry">
+            <End Role="Character" EntitySet="Characters" />
+            <End Role="LogEntry" EntitySet="LogEntries" />
+          </AssociationSet>
+          <EntitySet Name="Families" EntityType="FFModel.Family" />
+          <EntitySet Name="MasterRelationships" EntityType="FFModel.MasterRelationship" />
+          <AssociationSet Name="CharacterMasterRelationship1" Association="FFModel.CharacterMasterRelationship1">
+            <End Role="Character" EntitySet="Characters" />
+            <End Role="MasterRelationship" EntitySet="MasterRelationships" />
+          </AssociationSet>
+          <AssociationSet Name="CharacterMasterRelationship" Association="FFModel.CharacterMasterRelationship">
+            <End Role="Character" EntitySet="Characters" />
+            <End Role="MasterRelationship" EntitySet="MasterRelationships" />
+          </AssociationSet>
+          <AssociationSet Name="CharacterFamily" Association="FFModel.CharacterFamily">
+            <End Role="Character" EntitySet="Characters" />
+            <End Role="Family" EntitySet="Families" />
+          </AssociationSet>
+          <EntitySet Name="Hotkeys" EntityType="FFModel.Hotkey" />
+          <AssociationSet Name="CharacterHotkey" Association="FFModel.CharacterHotkey">
+            <End Role="Character" EntitySet="Characters" />
+            <End Role="Hotkey" EntitySet="Hotkeys" />
+          </AssociationSet>
+          <EntitySet Name="TaskBarItems" EntityType="FFModel.TaskBarItem" />
+          <AssociationSet Name="CharacterTaskBarItem" Association="FFModel.CharacterTaskBarItem">
+            <End Role="Character" EntitySet="Characters" />
+            <End Role="TaskBarItem" EntitySet="TaskBarItems" />
+          </AssociationSet>
+          <AssociationSet Name="CharacterInventoryItem" Association="FFModel.CharacterInventoryItem">
+            <End Role="Character" EntitySet="Characters" />
+            <End Role="InventoryItem" EntitySet="Items" />
+          </AssociationSet>
+          <AssociationSet Name="CharacterQuestItem" Association="FFModel.CharacterQuestItem">
+            <End Role="Character" EntitySet="Characters" />
+            <End Role="QuestItem" EntitySet="Items" />
+          </AssociationSet>
+          <AssociationSet Name="CharacterStorageItem" Association="FFModel.CharacterStorageItem">
+            <End Role="Character" EntitySet="Characters" />
+            <End Role="StorageItem" EntitySet="Items" />
+          </AssociationSet>
+          <EntitySet Name="Closets" EntityType="FFModel.Closet" />
+          <AssociationSet Name="ClosetClosetItems" Association="FFModel.ClosetClosetItems">
+            <End Role="Closet" EntitySet="Closets" />
+            <End Role="ClosetItems" EntitySet="Items" />
+          </AssociationSet>
+          <AssociationSet Name="ClosetCharacter" Association="FFModel.ClosetCharacter">
+            <End Role="Closet" EntitySet="Closets" />
+            <End Role="Character" EntitySet="Characters" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <NavigationProperty Name="Characters" Relationship="FFModel.UserCharacter" FromRole="User" ToRole="Character" />
+          <Property Type="String" Name="Name" Nullable="false" />
+          <Property Type="String" Name="Password" Nullable="false" />
+          <Property Type="Boolean" Name="AcceptedAgreement" Nullable="false" DefaultValue="False" />
+          <Property Type="Int32" Name="GoldCoins" Nullable="false" DefaultValue="0" />
+        </EntityType>
+        <EntityType Name="Character">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <NavigationProperty Name="User" Relationship="FFModel.UserCharacter" FromRole="Character" ToRole="User" />
+          <Property Name="UserId" Nullable="false" Type="Int32" />
+          <Property Name="Name" Nullable="false" Type="String" />
+          <Property Name="Level" Nullable="false" Type="Byte" DefaultValue="1" />
+          <Property Type="Int64" Name="Experience" Nullable="false" DefaultValue="0" />
+          <Property Name="Gender" Nullable="false" Type="Byte" />
+          <Property Name="Job" Nullable="false" Type="Byte" />
+          <Property Name="Position" Nullable="false" Type="FFModel.Position" />
+          <Property Name="WorldId" Nullable="false" Type="Int32" DefaultValue="1" />
+          <Property Name="Stats" Nullable="false" Type="FFModel.Stats" />
+          <Property Name="FlyingStats" Type="FFModel.FlyingStats" Nullable="false" />
+          <Property Name="Appearance" Type="FFModel.CharacterAppearance" Nullable="false" />
+          <Property Type="Int32" Name="BlockTime" Nullable="false" DefaultValue="0" />
+          <Property Type="Boolean" Name="Blocked" Nullable="false" />
+          <Property Type="Boolean" Name="Deleted" Nullable="false" DefaultValue="False" />
+          <Property Type="Int32" Name="Slot" Nullable="false" />
+          <NavigationProperty Name="LogEntries" Relationship="FFModel.CharacterLogEntry" FromRole="Character" ToRole="LogEntry" />
+          <Property Type="Int16" Name="Scale" Nullable="false" DefaultValue="100" />
+          <Property Name="PKInfo" Type="FFModel.PKInfo" Nullable="false" />
+          <NavigationProperty Name="PupilRelationships" Relationship="FFModel.CharacterMasterRelationship1" FromRole="Character" ToRole="MasterRelationship" />
+          <NavigationProperty Name="MasterRelationship" Relationship="FFModel.CharacterMasterRelationship" FromRole="Character" ToRole="MasterRelationship" />
+          <NavigationProperty Name="Family" Relationship="FFModel.CharacterFamily" FromRole="Character" ToRole="Family" />
+          <Property Type="Int32" Name="FamilyId" Nullable="true" />
+          <Property Type="Int32" Name="SilverCoins" Nullable="false" DefaultValue="0" />
+          <Property Type="Int32" Name="Savings" Nullable="false" DefaultValue="0" />
+          <NavigationProperty Name="Hotkeys" Relationship="FFModel.CharacterHotkey" FromRole="Character" ToRole="Hotkey" />
+          <NavigationProperty Name="TaskBarItems" Relationship="FFModel.CharacterTaskBarItem" FromRole="Character" ToRole="TaskBarItem" />
+          <NavigationProperty Name="InventoryItems" Relationship="FFModel.CharacterInventoryItem" FromRole="Character" ToRole="InventoryItem" />
+          <NavigationProperty Name="QuestItems" Relationship="FFModel.CharacterQuestItem" FromRole="Character" ToRole="QuestItem" />
+          <NavigationProperty Name="StorageItems" Relationship="FFModel.CharacterStorageItem" FromRole="Character" ToRole="StorageItem" />
+          <NavigationProperty Name="Closet" Relationship="FFModel.ClosetCharacter" FromRole="Character" ToRole="Closet" />
+          <Property Name="PersonalInformation" Type="FFModel.PersonalInformation" Nullable="false" />
+        </EntityType>
+        <Association Name="UserCharacter">
+          <End Type="FFModel.User" Multiplicity="1" Role="User" />
+          <End Type="FFModel.Character" Multiplicity="*" Role="Character" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Character">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Item">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="Int32" Name="ItemId" Nullable="false" />
+          <Property Type="Byte" Name="Slot" Nullable="false" />
+          <Property Type="Int32" Name="StackSize" Nullable="false" DefaultValue="1" />
+        </EntityType>
+        <ComplexType Name="Position">
+          <Property Type="Single" Name="X" Nullable="false" DefaultValue="622" />
+          <Property Type="Single" Name="Y" Nullable="false" DefaultValue="230.100006" />
+          <Property Type="Single" Name="Z" Nullable="false" DefaultValue="623" />
+        </ComplexType>
+        <ComplexType Name="Stats">
+          <Property Type="Int32" Name="STR" Nullable="false" DefaultValue="15" />
+          <Property Type="Int32" Name="STA" Nullable="false" DefaultValue="15" />
+          <Property Type="Int32" Name="INT" Nullable="false" DefaultValue="15" />
+          <Property Type="Int32" Name="DEX" Nullable="false" DefaultValue="15" />
+          <Property Type="Int32" Name="SPI" Nullable="false" DefaultValue="15" />
+          <Property Type="Int32" Name="Available" Nullable="false" DefaultValue="2" />
+        </ComplexType>
+        <ComplexType Name="CharacterAppearance">
+          <Property Type="Int32" Name="HairMesh" Nullable="false" />
+          <Property Type="Int32" Name="HairColor" Nullable="false" />
+          <Property Type="Int32" Name="HeadMesh" Nullable="false" />
+        </ComplexType>
+        <EntityType Name="LogEntry">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="Int32" Name="CharacterId" Nullable="false" />
+          <Property Type="String" Name="LogString" Nullable="false" />
+          <Property Type="Byte" Name="SystemId" Nullable="false" />
+          <Property Type="DateTime" Name="DateTime" Nullable="false" />
+          <NavigationProperty Name="Character" Relationship="FFModel.CharacterLogEntry" FromRole="LogEntry" ToRole="Character" />
+        </EntityType>
+        <Association Name="CharacterLogEntry">
+          <End Type="FFModel.Character" Role="Character" Multiplicity="1" />
+          <End Type="FFModel.LogEntry" Role="LogEntry" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Character">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LogEntry">
+              <PropertyRef Name="CharacterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Family">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="String" Name="Name" Nullable="false" />
+          <Property Type="Int32" Name="Rank" Nullable="false" />
+          <Property Type="Int32" Name="Popularity" Nullable="false" DefaultValue="0" />
+          <Property Type="Byte" Name="Icon" Nullable="false" DefaultValue="0" />
+          <NavigationProperty Name="Members" Relationship="FFModel.CharacterFamily" FromRole="Family" ToRole="Character" />
+        </EntityType>
+        <EntityType Name="MasterRelationship">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="Int32" Name="CharacterId" Nullable="false" cg:GetterAccess="Private" cg:SetterAccess="Private" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+          <Property Type="Int32" Name="Points" Nullable="false" DefaultValue="0" />
+          <NavigationProperty Name="Master" Relationship="FFModel.CharacterMasterRelationship1" FromRole="MasterRelationship" ToRole="Character" />
+          <NavigationProperty Name="Pupil" Relationship="FFModel.CharacterMasterRelationship" FromRole="MasterRelationship" ToRole="Character" />
+        </EntityType>
+        <ComplexType Name="PKInfo">
+          <Property Type="Int32" Name="Kills" Nullable="false" DefaultValue="0" />
+          <Property Type="Int32" Name="Deaths" Nullable="false" DefaultValue="0" />
+          <Property Type="Int32" Name="Fame" Nullable="false" DefaultValue="100" />
+          <Property Type="Byte" Name="PKMode" Nullable="false" DefaultValue="0" />
+          <Property Type="Byte" Name="PKName" Nullable="false" DefaultValue="0" />
+          <Property Type="Int32" Name="GreyTime" Nullable="false" DefaultValue="0" />
+          <Property Type="Int32" Name="ProtectionCooldownStart" Nullable="false" DefaultValue="0" />
+        </ComplexType>
+        <Association Name="CharacterMasterRelationship1">
+          <End Type="FFModel.Character" Role="Character" Multiplicity="1" />
+          <End Type="FFModel.MasterRelationship" Role="MasterRelationship" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Character">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MasterRelationship">
+              <PropertyRef Name="CharacterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CharacterMasterRelationship">
+          <End Type="FFModel.Character" Role="Character" Multiplicity="1" />
+          <End Type="FFModel.MasterRelationship" Role="MasterRelationship" Multiplicity="0..1" />
+        </Association>
+        <Association Name="CharacterFamily">
+          <End Type="FFModel.Character" Role="Character" Multiplicity="*" />
+          <End Type="FFModel.Family" Role="Family" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Family">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Character">
+              <PropertyRef Name="FamilyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Hotkey">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="Int32" Name="CharacterId" Nullable="false" />
+          <Property Type="Int32" Name="Index" Nullable="false" />
+          <Property Type="Int32" Name="Key" Nullable="false" />
+          <Property Type="Int32" Name="Modifier" Nullable="false" />
+          <NavigationProperty Name="Character" Relationship="FFModel.CharacterHotkey" FromRole="Hotkey" ToRole="Character" />
+        </EntityType>
+        <Association Name="CharacterHotkey">
+          <End Type="FFModel.Character" Role="Character" Multiplicity="1" />
+          <End Type="FFModel.Hotkey" Role="Hotkey" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Character">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Hotkey">
+              <PropertyRef Name="CharacterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="TaskBarItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" Name="Id" Nullable="false" a:StoreGeneratedPattern="Identity" Type="Int32" />
+          <Property Type="Int32" Name="CharacterId" Nullable="false" />
+          <Property Name="TaskBar" Nullable="false" Type="Int32" />
+          <Property Name="Line" Nullable="false" Type="Int32" />
+          <Property Name="Grid" Nullable="false" Type="Int32" />
+          <Property Name="Shortcut" Nullable="false" Type="Int32" />
+          <Property Name="ShortcutId" Nullable="false" Type="Int32" />
+          <Property Name="Type" Nullable="false" Type="Int32" />
+          <Property Type="Int32" Name="Index" Nullable="false" />
+          <Property Type="Int32" Name="UserId" Nullable="false" />
+          <Property Type="Int32" Name="Data" Nullable="false" />
+          <Property Type="String" Name="String" Nullable="false" />
+          <NavigationProperty Name="Character" Relationship="FFModel.CharacterTaskBarItem" FromRole="TaskBarItem" ToRole="Character" />
+        </EntityType>
+        <Association Name="CharacterTaskBarItem">
+          <End Type="FFModel.Character" Role="Character" Multiplicity="1" />
+          <End Type="FFModel.TaskBarItem" Role="TaskBarItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Character">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TaskBarItem">
+              <PropertyRef Name="CharacterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="InventoryItem" BaseType="FFModel.Item" >
+          <NavigationProperty Name="Character" Relationship="FFModel.CharacterInventoryItem" FromRole="InventoryItem" ToRole="Character" />
+          <Property Type="Int32" Name="CharacterId" Nullable="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+        </EntityType>
+        <EntityType Name="QuestItem" BaseType="FFModel.Item" >
+          <NavigationProperty Name="Character" Relationship="FFModel.CharacterQuestItem" FromRole="QuestItem" ToRole="Character" />
+          <Property Type="Int32" Name="CharacterId" Nullable="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+        </EntityType>
+        <EntityType Name="StorageItem" BaseType="FFModel.Item" >
+          <NavigationProperty Name="Character" Relationship="FFModel.CharacterStorageItem" FromRole="StorageItem" ToRole="Character" />
+          <Property Type="Int32" Name="CharacterId" Nullable="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+        </EntityType>
+        <Association Name="CharacterInventoryItem">
+          <End Type="FFModel.Character" Role="Character" Multiplicity="1" />
+          <End Type="FFModel.InventoryItem" Role="InventoryItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Character">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="InventoryItem">
+              <PropertyRef Name="CharacterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CharacterQuestItem">
+          <End Type="FFModel.Character" Role="Character" Multiplicity="1" />
+          <End Type="FFModel.QuestItem" Role="QuestItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Character">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="QuestItem">
+              <PropertyRef Name="CharacterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CharacterStorageItem">
+          <End Type="FFModel.Character" Role="Character" Multiplicity="1" />
+          <End Type="FFModel.StorageItem" Role="StorageItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Character">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="StorageItem">
+              <PropertyRef Name="CharacterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Closet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="Int32" Name="Level" Nullable="false" DefaultValue="1" />
+          <Property Type="Int32" Name="Capacity" Nullable="false" DefaultValue="8" />
+          <NavigationProperty Name="Items" Relationship="FFModel.ClosetClosetItems" FromRole="Closet" ToRole="ClosetItems" />
+          <NavigationProperty Name="Character" Relationship="FFModel.ClosetCharacter" FromRole="Closet" ToRole="Character" />
+        </EntityType>
+        <EntityType Name="ClosetItem" BaseType="FFModel.Item" >
+          <Property Type="Int32" Name="ClosetId" Nullable="false" xmlns="http://schemas.microsoft.com/ado/2009/11/edm" />
+          <Property Type="Int32" Name="Level" Nullable="false" DefaultValue="1" />
+          <Property Type="Boolean" Name="Equipped" Nullable="false" DefaultValue="False" />
+          <Property Type="Int32" Name="Index" Nullable="false" />
+          <NavigationProperty Name="Closet" Relationship="FFModel.ClosetClosetItems" FromRole="ClosetItems" ToRole="Closet" />
+          <Property Type="DateTime" Name="DateTime" Nullable="false" />
+        </EntityType>
+        <Association Name="ClosetClosetItems">
+          <End Type="FFModel.Closet" Role="Closet" Multiplicity="1" />
+          <End Type="FFModel.ClosetItem" Role="ClosetItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Closet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ClosetItems">
+              <PropertyRef Name="ClosetId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ClosetCharacter">
+          <End Type="FFModel.Closet" Role="Closet" Multiplicity="1" />
+          <End Type="FFModel.Character" Role="Character" Multiplicity="1" />
+        </Association>
+        <ComplexType Name="FlyingStats" >
+          <Property Type="Int32" Name="Level" Nullable="false" DefaultValue="1" />
+          <Property Type="Int32" Name="Experience" Nullable="false" DefaultValue="0" />
+        </ComplexType>
+        <ComplexType Name="PersonalInformation" >
+          <Property Type="Int32" Name="City" Nullable="false" />
+          <Property Type="Int32" Name="ZodiacSign" Nullable="false" />
+        </ComplexType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="FFModelStoreContainer" CdmEntityContainer="FFModelContainer">
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="IsTypeOf(FFModel.User)">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="AcceptedAgreement" ColumnName="AcceptedAgreement" />
+          <ScalarProperty Name="GoldCoins" ColumnName="GoldCoins" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Characters">
+      <EntityTypeMapping TypeName="IsTypeOf(FFModel.Character)">
+        <MappingFragment StoreEntitySet="Characters">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Level" ColumnName="Level" />
+          <ScalarProperty Name="Experience" ColumnName="Experience" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="Job" ColumnName="Job" />
+          <ComplexProperty Name="Position" TypeName="FFModel.Position">
+            <ScalarProperty Name="X" ColumnName="Position_X" />
+            <ScalarProperty Name="Y" ColumnName="Position_Y" />
+            <ScalarProperty Name="Z" ColumnName="Position_Z" />
+          </ComplexProperty>
+          <ScalarProperty Name="WorldId" ColumnName="WorldId" />
+          <ComplexProperty Name="Stats" TypeName="FFModel.Stats">
+            <ScalarProperty Name="STR" ColumnName="Stats_STR" />
+            <ScalarProperty Name="STA" ColumnName="Stats_STA" />
+            <ScalarProperty Name="INT" ColumnName="Stats_INT" />
+            <ScalarProperty Name="DEX" ColumnName="Stats_DEX" />
+            <ScalarProperty Name="SPI" ColumnName="Stats_SPI" />
+            <ScalarProperty Name="Available" ColumnName="Stats_Available" />
+          </ComplexProperty>
+          <ComplexProperty Name="FlyingStats" TypeName="FFModel.FlyingStats">
+            <ScalarProperty Name="Level" ColumnName="FlyingStats_Level" />
+            <ScalarProperty Name="Experience" ColumnName="FlyingStats_Experience" />
+          </ComplexProperty>
+          <ComplexProperty Name="Appearance" TypeName="FFModel.CharacterAppearance">
+            <ScalarProperty Name="HairMesh" ColumnName="Appearance_HairMesh" />
+            <ScalarProperty Name="HairColor" ColumnName="Appearance_HairColor" />
+            <ScalarProperty Name="HeadMesh" ColumnName="Appearance_HeadMesh" />
+          </ComplexProperty>
+          <ScalarProperty Name="BlockTime" ColumnName="BlockTime" />
+          <ScalarProperty Name="Blocked" ColumnName="Blocked" />
+          <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+          <ScalarProperty Name="Slot" ColumnName="Slot" />
+          <ScalarProperty Name="Scale" ColumnName="Scale" />
+          <ComplexProperty Name="PKInfo" TypeName="FFModel.PKInfo">
+            <ScalarProperty Name="Kills" ColumnName="PKInfo_Kills" />
+            <ScalarProperty Name="Deaths" ColumnName="PKInfo_Deaths" />
+            <ScalarProperty Name="Fame" ColumnName="PKInfo_Fame" />
+            <ScalarProperty Name="PKMode" ColumnName="PKInfo_PKMode" />
+            <ScalarProperty Name="PKName" ColumnName="PKInfo_PKName" />
+            <ScalarProperty Name="GreyTime" ColumnName="PKInfo_GreyTime" />
+            <ScalarProperty Name="ProtectionCooldownStart" ColumnName="PKInfo_ProtectionCooldownStart" />
+          </ComplexProperty>
+          <ScalarProperty Name="FamilyId" ColumnName="FamilyId" />
+          <ScalarProperty Name="SilverCoins" ColumnName="SilverCoins" />
+          <ScalarProperty Name="Savings" ColumnName="Savings" />
+          <ComplexProperty Name="PersonalInformation" TypeName="FFModel.PersonalInformation">
+            <ScalarProperty Name="City" ColumnName="PersonalInformation_City" />
+            <ScalarProperty Name="ZodiacSign" ColumnName="PersonalInformation_ZodiacSign" />
+          </ComplexProperty>
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Items">
+      <EntityTypeMapping TypeName="IsTypeOf(FFModel.Item)">
+        <MappingFragment StoreEntitySet="Items">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+          <ScalarProperty Name="Slot" ColumnName="Slot" />
+          <ScalarProperty Name="StackSize" ColumnName="StackSize" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(FFModel.InventoryItem)">
+        <MappingFragment StoreEntitySet="Items_InventoryItem">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CharacterId" ColumnName="CharacterId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(FFModel.QuestItem)">
+        <MappingFragment StoreEntitySet="Items_QuestItem">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CharacterId" ColumnName="CharacterId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(FFModel.StorageItem)">
+        <MappingFragment StoreEntitySet="Items_StorageItem">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CharacterId" ColumnName="CharacterId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(FFModel.ClosetItem)">
+        <MappingFragment StoreEntitySet="Items_ClosetItem">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ClosetId" ColumnName="ClosetId" />
+          <ScalarProperty Name="Level" ColumnName="Level" />
+          <ScalarProperty Name="Equipped" ColumnName="Equipped" />
+          <ScalarProperty Name="Index" ColumnName="Index" />
+          <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LogEntries">
+      <EntityTypeMapping TypeName="IsTypeOf(FFModel.LogEntry)">
+        <MappingFragment StoreEntitySet="LogEntries">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CharacterId" ColumnName="CharacterId" />
+          <ScalarProperty Name="LogString" ColumnName="LogString" />
+          <ScalarProperty Name="SystemId" ColumnName="SystemId" />
+          <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Families">
+      <EntityTypeMapping TypeName="IsTypeOf(FFModel.Family)">
+        <MappingFragment StoreEntitySet="Families">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Rank" ColumnName="Rank" />
+          <ScalarProperty Name="Popularity" ColumnName="Popularity" />
+          <ScalarProperty Name="Icon" ColumnName="Icon" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MasterRelationships">
+      <EntityTypeMapping TypeName="IsTypeOf(FFModel.MasterRelationship)">
+        <MappingFragment StoreEntitySet="MasterRelationships">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CharacterId" ColumnName="CharacterId" />
+          <ScalarProperty Name="Points" ColumnName="Points" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Hotkeys">
+      <EntityTypeMapping TypeName="IsTypeOf(FFModel.Hotkey)">
+        <MappingFragment StoreEntitySet="Hotkeys">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CharacterId" ColumnName="CharacterId" />
+          <ScalarProperty Name="Index" ColumnName="Index" />
+          <ScalarProperty Name="Key" ColumnName="Key" />
+          <ScalarProperty Name="Modifier" ColumnName="Modifier" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TaskBarItems">
+      <EntityTypeMapping TypeName="IsTypeOf(FFModel.TaskBarItem)">
+        <MappingFragment StoreEntitySet="TaskBarItems">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CharacterId" ColumnName="CharacterId" />
+          <ScalarProperty Name="TaskBar" ColumnName="TaskBar" />
+          <ScalarProperty Name="Line" ColumnName="Line" />
+          <ScalarProperty Name="Grid" ColumnName="Grid" />
+          <ScalarProperty Name="Shortcut" ColumnName="Shortcut" />
+          <ScalarProperty Name="ShortcutId" ColumnName="ShortcutId" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Index" ColumnName="Index" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Data" ColumnName="Data" />
+          <ScalarProperty Name="String" ColumnName="String" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Closets">
+      <EntityTypeMapping TypeName="IsTypeOf(FFModel.Closet)">
+        <MappingFragment StoreEntitySet="Closets">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Level" ColumnName="Level" />
+          <ScalarProperty Name="Capacity" ColumnName="Capacity" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="CharacterMasterRelationship" TypeName="FFModel.CharacterMasterRelationship" StoreEntitySet="MasterRelationships">
+      <EndProperty Name="Character">
+        <ScalarProperty Name="Id" ColumnName="Pupil_Id" />
+      </EndProperty>
+      <EndProperty Name="MasterRelationship">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ClosetCharacter" TypeName="FFModel.ClosetCharacter" StoreEntitySet="Closets">
+      <EndProperty Name="Character">
+        <ScalarProperty Name="Id" ColumnName="Character_Id" />
+      </EndProperty>
+      <EndProperty Name="Closet">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer>
+    <edmx:Connection>
+      <DesignerInfoPropertySet xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Default" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram Name="FFModel" ZoomLevel="100" xmlns="http://schemas.microsoft.com/ado/2009/11/edmx" DisplayType="false">
+        <EntityTypeShape EntityType="FFModel.User" Width="1.5" PointX="0.75" PointY="3.375" Height="1.9802864583333335" IsExpanded="true" />
+        <EntityTypeShape EntityType="FFModel.Character" PointX="3.125" PointY="1.125" Width="1.75" Height="4.0956022135416656" IsExpanded="true" />
+        <AssociationConnector Association="FFModel.UserCharacter">
+          <ConnectorPoint PointX="3.625" PointY="4.7401432291666667" />
+          <ConnectorPoint PointX="4.375" PointY="4.7401432291666667" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="FFModel.Item" Width="1.5" PointX="9.625" PointY="4" Height="2.3648893229166665" IsExpanded="true" />
+        <EntityTypeShape EntityType="FFModel.LogEntry" Width="1.625" PointX="5.25" PointY="1.25" Height="2.1725878906249996" IsExpanded="true" />
+        <AssociationConnector Association="FFModel.CharacterLogEntry">
+          <ConnectorPoint PointX="6.125" PointY="6.1103011067708328" />
+          <ConnectorPoint PointX="6.875" PointY="6.1103011067708328" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="FFModel.Family" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FFModel.MasterRelationship" Width="1.625" PointX="5.25" PointY="5.75" IsExpanded="true" />
+        <AssociationConnector Association="FFModel.CharacterMasterRelationship1" />
+        <AssociationConnector Association="FFModel.CharacterMasterRelationship" />
+        <AssociationConnector Association="FFModel.CharacterFamily" />
+        <EntityTypeShape EntityType="FFModel.Hotkey" Width="1.5" PointX="0.75" PointY="6.25" IsExpanded="true" />
+        <AssociationConnector Association="FFModel.CharacterHotkey" />
+        <EntityTypeShape EntityType="FFModel.TaskBarItem" PointX="11.75" PointY="2.25" Width="1.5" />
+        <AssociationConnector Association="FFModel.CharacterTaskBarItem" />
+        <EntityTypeShape EntityType="FFModel.InventoryItem" Width="1.5" PointX="7.625" PointY="4.25" />
+        <InheritanceConnector EntityType="FFModel.InventoryItem" />
+        <EntityTypeShape EntityType="FFModel.QuestItem" Width="1.5" PointX="7.625" PointY="2.75" />
+        <EntityTypeShape EntityType="FFModel.StorageItem" Width="1.5" PointX="7.625" PointY="1.25" />
+        <InheritanceConnector EntityType="FFModel.StorageItem" />
+        <InheritanceConnector EntityType="FFModel.QuestItem" />
+        <AssociationConnector Association="FFModel.CharacterInventoryItem" />
+        <AssociationConnector Association="FFModel.CharacterQuestItem" />
+        <AssociationConnector Association="FFModel.CharacterStorageItem" ManuallyRouted="true" >
+          <ConnectorPoint PointX="4.875" PointY="1.1250000001205671" />
+          <ConnectorPoint PointX="4.875" PointY="1.0025951538461539" />
+          <ConnectorPoint PointX="4.7395833333333339" PointY="1.0025951538461539" />
+          <ConnectorPoint PointX="5.1145833333333339" PointY="0.75134515384615419" />
+          <ConnectorPoint PointX="5.25" PointY="0.75134515384615419" />
+          <ConnectorPoint PointX="5.25" PointY="0.875" />
+          <ConnectorPoint PointX="7.25" PointY="0.875" />
+          <ConnectorPoint PointX="7.625" PointY="1.25" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="FFModel.Closet" Width="1.625" PointX="5.25" PointY="3.625" />
+        <EntityTypeShape EntityType="FFModel.ClosetItem" Width="1.5" PointX="7.625" PointY="5.75" />
+        <InheritanceConnector EntityType="FFModel.ClosetItem" />
+        <AssociationConnector Association="FFModel.ClosetClosetItems" />
+        <AssociationConnector Association="FFModel.ClosetCharacter" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
