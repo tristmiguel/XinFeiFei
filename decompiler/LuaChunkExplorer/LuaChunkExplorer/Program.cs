@@ -15,7 +15,7 @@ namespace LuaChunkExplorer
 			//2. Use (*) to decompile the file you have just extracted.
 			//3. Use (**) to extract the filenames of the remaining scripts from the decompiled file.
 			//4. Use the extractor to extract these files (using the luaFiles.txt file you have created in step 3).
-			//5. Finally, use (**) to decompile these files.
+			//5. Finally, use (*) to decompile these files.
 			//6. (Nearly) all scripts should now be decompiled!
 
 			//(*)
